@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Interacción mediante javascript</title>
+<style>
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:space-around;
+    }
+    .box {
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+    }
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        <div class="box" id="box3"></div>
+    </div>
+    <div class="button-container">
+        <button onclick="toggleColors()">Toggle Colors</button>
+        <button onclick="toggleBorders()">Toggle Rounded Borders</button>
+        <button onclick="addBox()">Add a New Box</button>
+    </div>
+
+    <script>
+        let boxes = document.querySelectorAll('.box');
+        let colors = ['yellow', 'purple', 'pink'];
+        let colored = false;
+        let roundedBorders = false;
+
+        function toggleColors() {
+            colored = !colored;
+            boxes.forEach((box, indice) => {
+                box.style.backgroundColor = colored ? colors[indice] : 'transparent';
+            });
+        }
+
+        function toggleBorders() {
+            roundedBorders = !roundedBorders;
+            boxes.forEach(box => {
+                box.style.borderRadius = roundedBorders ? '10px' : '0';
+            });
+        }
+
+        function addBox() {
+            let newBox = document.createElement('div');
+            newBox.className = 'box';
+            newBox.style.border = '1px solid black';
+            document.querySelector('.container').appendChild(newBox);
+        }
+    </script>
+</body>
+</html>
